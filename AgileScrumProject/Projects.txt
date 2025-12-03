@@ -1,0 +1,198 @@
+================================================================================
+DỰ ÁN: ỨNG DỤNG QUẢN LÝ HỌC TẬP CÁ NHÂN
+================================================================================
+
+SPRINT GOAL:
+Phát triển ứng dụng quản lý học tập cá nhân với các tính năng cơ bản cho phép 
+người dùng tạo và quản lý nhiệm vụ học tập, theo dõi tiến độ, và quản lý thời gian 
+học tập hiệu quả trong Sprint đầu tiên.
+
+================================================================================
+1. SPRINT PLANNING & PRODUCT BACKLOG
+================================================================================
+
+1.1 Danh sách User Stories (5-7 stories)
+
+STT | User Story | Mô tả ngắn | Story Point | Mức độ ưu tiên
+----|------------|------------|-------------|----------------
+1   | Là người học, tôi muốn tạo và quản lý danh sách nhiệm vụ học tập để theo dõi những gì cần hoàn thành | Người dùng có thể thêm, xem, chỉnh sửa và xóa các nhiệm vụ học tập | 5 | Cao
+2   | Là người học, tôi muốn đánh dấu nhiệm vụ đã hoàn thành để theo dõi tiến độ học tập | Người dùng có thể đánh dấu task là "Done" và xem danh sách task đã hoàn thành | 3 | Cao
+3   | Là người học, tôi muốn đặt deadline cho từng nhiệm vụ để quản lý thời gian hiệu quả | Người dùng có thể thêm ngày hết hạn cho task và nhận thông báo khi gần deadline | 5 | Trung bình
+4   | Là người học, tôi muốn xem thống kê tiến độ học tập để đánh giá hiệu quả | Hiển thị số lượng task đã hoàn thành, đang làm, và tổng số task trong tuần/tháng | 8 | Trung bình
+5   | Là người học, tôi muốn phân loại nhiệm vụ theo môn học để tổ chức tốt hơn | Người dùng có thể gán tag/category cho task (ví dụ: Toán, Lý, Hóa...) | 3 | Thấp
+6   | Là người học, tôi muốn tìm kiếm và lọc nhiệm vụ để nhanh chóng tìm thấy task cần thiết | Có chức năng search và filter theo trạng thái, môn học, deadline | 5 | Trung bình
+7   | Là người học, tôi muốn xem lịch học tập để lập kế hoạch tuần | Hiển thị các task theo dạng lịch (calendar view) với deadline được đánh dấu | 8 | Thấp
+
+
+1.2 Acceptance Criteria (AC) cho từng User Story
+
+Tên Story | Mô tả tiêu chí
+----------|-----------------------------------------------------------------------
+Story 1   | Điều kiện 1: Người dùng có thể nhập tên task và nhấn nút "Thêm" để tạo task mới
+          | Điều kiện 2: Danh sách task hiển thị tất cả task đã tạo với thông tin: tên, trạng thái, ngày tạo
+          | Điều kiện 3: Người dùng có thể chỉnh sửa tên task bằng cách click vào task và sửa
+          | Điều kiện 4: Người dùng có thể xóa task bằng nút "Xóa" và xác nhận trước khi xóa
+          | Điều kiện 5: Khi không có task nào, hiển thị thông báo "Chưa có nhiệm vụ nào"
+----------|-----------------------------------------------------------------------
+Story 2   | Điều kiện 1: Mỗi task có checkbox để đánh dấu hoàn thành
+          | Điều kiện 2: Khi đánh dấu hoàn thành, task chuyển sang trạng thái "Done" và có gạch ngang
+          | Điều kiện 3: Có tab/filter để xem riêng danh sách task đã hoàn thành
+          | Điều kiện 4: Người dùng có thể bỏ đánh dấu để chuyển task về trạng thái chưa hoàn thành
+----------|-----------------------------------------------------------------------
+Story 3   | Điều kiện 1: Khi tạo/sửa task, có trường chọn ngày deadline (date picker)
+          | Điều kiện 2: Task có deadline được hiển thị với icon hoặc màu sắc đặc biệt
+          | Điều kiện 3: Task gần deadline (trong 24h) được highlight màu vàng/cam
+          | Điều kiện 4: Task quá deadline được highlight màu đỏ
+          | Điều kiện 5: Có thông báo popup/notification khi mở app và có task sắp đến hạn
+----------|-----------------------------------------------------------------------
+Story 4   | Điều kiện 1: Có trang/section "Thống kê" hiển thị các số liệu
+          | Điều kiện 2: Hiển thị số task đã hoàn thành trong tuần hiện tại
+          | Điều kiện 3: Hiển thị số task đang làm (In Progress)
+          | Điều kiện 4: Hiển thị tổng số task và tỷ lệ % hoàn thành
+          | Điều kiện 5: Có biểu đồ đơn giản (bar chart hoặc pie chart) minh họa
+----------|-----------------------------------------------------------------------
+Story 5   | Điều kiện 1: Khi tạo/sửa task, có dropdown hoặc input để chọn môn học
+          | Điều kiện 2: Danh sách môn học có thể thêm mới (Toán, Lý, Hóa, Anh, Văn...)
+          | Điều kiện 3: Task hiển thị tag/badge màu sắc tương ứng với môn học
+          | Điều kiện 4: Có thể filter task theo môn học bằng cách click vào tag
+----------|-----------------------------------------------------------------------
+Story 6   | Điều kiện 1: Có ô tìm kiếm ở đầu trang để nhập từ khóa
+          | Điều kiện 2: Kết quả tìm kiếm hiển thị real-time khi gõ
+          | Điều kiện 3: Có các nút filter: "Tất cả", "Đang làm", "Đã xong", "Quá hạn"
+          | Điều kiện 4: Có thể kết hợp search và filter cùng lúc
+          | Điều kiện 5: Khi không tìm thấy, hiển thị "Không có kết quả"
+----------|-----------------------------------------------------------------------
+Story 7   | Điều kiện 1: Có tab "Lịch" để chuyển sang chế độ xem calendar
+          | Điều kiện 2: Calendar hiển thị theo tuần hoặc tháng
+          | Điều kiện 3: Task có deadline được hiển thị ở ngày tương ứng trên lịch
+          | Điều kiện 4: Click vào ngày trên lịch hiển thị danh sách task của ngày đó
+          | Điều kiện 5: Có thể kéo thả task để thay đổi deadline từ calendar view
+
+
+1.3 Definition of Done (DoD)
+
+STT | Định nghĩa hoàn thành
+----|-----------------------------------------------------------------------
+1   | Backlog hoàn chỉnh: Tất cả User Stories đã được mô tả rõ ràng với Acceptance Criteria
+2   | Code đã được viết và review bởi ít nhất 1 developer khác
+3   | Tất cả test cases đã được thực hiện và pass
+4   | UI/UX đã được thiết kế và implement theo mockup
+5   | Không còn bug nghiêm trọng (Critical/High severity)
+6   | Code đã được merge vào nhánh chính (main branch)
+7   | Tính năng đã được demo và được Product Owner chấp nhận
+8   | Tài liệu kỹ thuật đã được cập nhật (nếu có thay đổi)
+9   | Tính năng hoạt động đúng trên ít nhất 2 trình duyệt/thiết bị khác nhau
+
+
+1.4 Estimation – Planning Poker
+
+Story | Story Point | Lý do chọn điểm
+------|-------------|-----------------------------------------------------------------------
+Story 1 | 5 | Tính năng cơ bản CRUD, cần xử lý validation và state management, độ phức tạp trung bình
+Story 2 | 3 | Tính năng đơn giản, chỉ cần thay đổi trạng thái và UI update, ít rủi ro
+Story 3 | 5 | Cần tích hợp date picker, xử lý logic so sánh ngày, notification, có độ phức tạp
+Story 4 | 8 | Cần tính toán dữ liệu, tích hợp thư viện chart, xử lý nhiều trường hợp edge case
+Story 5 | 3 | Tính năng đơn giản, chỉ thêm field và tag UI, ít logic phức tạp
+Story 6 | 5 | Cần implement search algorithm, filter logic, xử lý nhiều điều kiện kết hợp
+Story 7 | 8 | Tính năng phức tạp nhất, cần tích hợp calendar library, drag-drop, nhiều view mode
+
+
+================================================================================
+2. KANBAN BOARD
+================================================================================
+
+2.1 Chia nhỏ User Story thành Task
+
+Story | Task | Người thực hiện | Mô tả
+------|------|-----------------|-----------------------------------------------------------------------
+Story 1 | Task 1.1: Thiết kế UI form thêm task | Dev | Tạo giao diện input field và nút "Thêm" với validation cơ bản
+      | Task 1.2: Implement logic thêm task vào danh sách | Dev | Xử lý state management, lưu task vào local storage hoặc state
+      | Task 1.3: Implement chức năng sửa và xóa task | Dev | Thêm nút edit/delete, xử lý modal confirm khi xóa
+      | Task 1.4: Test các chức năng CRUD của task | Tester | Kiểm thử thêm, sửa, xóa task với các trường hợp hợp lệ và không hợp lệ
+------|------|-----------------|-----------------------------------------------------------------------
+Story 2 | Task 2.1: Thêm checkbox vào mỗi task item | Dev | Implement checkbox component và binding với state
+      | Task 2.2: Xử lý logic đánh dấu hoàn thành | Dev | Update state khi checkbox thay đổi, apply CSS cho task đã hoàn thành
+      | Task 2.3: Tạo filter tab "Đã hoàn thành" | Dev | Implement filter logic và UI tab để hiển thị task Done
+      | Task 2.4: Test chức năng đánh dấu và filter | Tester | Kiểm thử checkbox, filter, và việc bỏ đánh dấu
+------|------|-----------------|-----------------------------------------------------------------------
+Story 3 | Task 3.1: Tích hợp date picker component | Dev | Chọn và cài đặt thư viện date picker, tích hợp vào form
+      | Task 3.2: Implement logic highlight task gần/quá deadline | Dev | So sánh ngày hiện tại với deadline, apply màu sắc tương ứng
+      | Task 3.3: Tạo notification cho task sắp đến hạn | Dev | Implement logic kiểm tra và hiển thị alert/notification
+      | Task 3.4: Test date picker và logic deadline | Tester | Kiểm thử chọn ngày, hiển thị màu sắc, và notification
+------|------|-----------------|-----------------------------------------------------------------------
+Story 4 | Task 4.1: Thiết kế UI trang thống kê | Dev | Tạo layout với các card hiển thị số liệu
+      | Task 4.2: Implement logic tính toán thống kê | Dev | Tính toán số task theo trạng thái, tỷ lệ hoàn thành
+      | Task 4.3: Tích hợp thư viện chart để vẽ biểu đồ | Dev | Cài đặt và sử dụng chart library (Chart.js hoặc Recharts)
+      | Task 4.4: Test tính toán và hiển thị thống kê | Tester | Kiểm thử với nhiều dữ liệu khác nhau, edge cases
+------|------|-----------------|-----------------------------------------------------------------------
+Story 5 | Task 5.1: Tạo component dropdown chọn môn học | Dev | Implement dropdown với danh sách môn học có sẵn
+      | Task 5.2: Implement chức năng thêm môn học mới | Dev | Cho phép user thêm môn học tùy chỉnh vào danh sách
+      | Task 5.3: Hiển thị tag/badge màu sắc cho môn học | Dev | Tạo tag component với màu sắc phân biệt cho từng môn
+      | Task 5.4: Implement filter theo môn học | Dev | Logic filter task khi click vào tag môn học
+      | Task 5.5: Test chức năng phân loại và filter môn học | Tester | Kiểm thử thêm môn, gán môn, filter theo môn
+------|------|-----------------|-----------------------------------------------------------------------
+Story 6 | Task 6.1: Tạo component search box | Dev | Implement input field với icon search và debounce
+      | Task 6.2: Implement logic tìm kiếm real-time | Dev | Filter danh sách task dựa trên từ khóa tìm kiếm
+      | Task 6.3: Tạo các nút filter (Tất cả, Đang làm, Đã xong, Quá hạn) | Dev | Implement UI và logic cho các filter button
+      | Task 6.4: Kết hợp search và filter | Dev | Xử lý logic khi vừa search vừa filter cùng lúc
+      | Task 6.5: Test search và filter với nhiều trường hợp | Tester | Kiểm thử search, filter riêng và kết hợp
+------|------|-----------------|-----------------------------------------------------------------------
+Story 7 | Task 7.1: Tích hợp calendar library | Dev | Chọn và cài đặt thư viện calendar (react-big-calendar hoặc tương tự)
+      | Task 7.2: Implement logic hiển thị task trên calendar | Dev | Map task có deadline vào các ngày tương ứng trên lịch
+      | Task 7.3: Implement chức năng click ngày xem task | Dev | Hiển thị modal/drawer với danh sách task của ngày được chọn
+      | Task 7.4: Implement drag-drop để thay đổi deadline | Dev | Cho phép kéo task từ ngày này sang ngày khác để đổi deadline
+      | Task 7.5: Test calendar view và các tương tác | Tester | Kiểm thử hiển thị, click, drag-drop trên calendar
+
+
+2.2 Kanban Board
+
+User Story | Todo | In Progress | Pending | Review | Done
+-----------|------|-------------|---------|--------|-----
+Story 1 | Task 1.1, 1.2, 1.3, 1.4 | - | - | - | -
+Story 2 | Task 2.1, 2.2, 2.3, 2.4 | - | - | - | -
+Story 3 | Task 3.1, 3.2, 3.3, 3.4 | - | - | - | -
+Story 4 | Task 4.1, 4.2, 4.3, 4.4 | - | - | - | -
+Story 5 | Task 5.1, 5.2, 5.3, 5.4, 5.5 | - | - | - | -
+Story 6 | Task 6.1, 6.2, 6.3, 6.4, 6.5 | - | - | - | -
+Story 7 | Task 7.1, 7.2, 7.3, 7.4, 7.5 | - | - | - | -
+
+
+================================================================================
+3. PHÂN TÍCH RỦI RO & ƯU TIÊN BACKLOG
+================================================================================
+
+3.1 Phân tích rủi ro
+
+Story | Phân tích rủi ro | Lý do
+------|------------------|-----------------------------------------------------------------------
+Story 1 | Low | Tính năng cơ bản, đã có nhiều ví dụ và pattern, ít rủi ro kỹ thuật
+Story 2 | Low | Logic đơn giản, chỉ cần update state, không có phụ thuộc bên ngoài
+Story 3 | Medium | Phụ thuộc vào thư viện date picker, cần xử lý timezone, có thể có bug với format ngày
+Story 4 | Medium | Phụ thuộc vào thư viện chart, có thể có vấn đề về performance với nhiều dữ liệu, logic tính toán phức tạp
+Story 5 | Low | Tính năng đơn giản, chỉ cần quản lý danh sách và tag, ít rủi ro
+Story 6 | Medium | Logic search và filter có thể phức tạp với nhiều điều kiện, cần tối ưu performance
+Story 7 | High | Tính năng phức tạp nhất, phụ thuộc nhiều vào thư viện bên ngoài, drag-drop có thể có vấn đề cross-browser, cần nhiều thời gian test
+
+
+3.2 MoSCoW
+
+Story | Must | Should | Could | Won't | Lý do
+------|------|--------|-------|-------|-----------------------------------------------------------------------
+Story 1 | X | | | | Tính năng cốt lõi của ứng dụng, không có thì app không hoạt động được
+Story 2 | X | | | | Cần thiết để theo dõi tiến độ, là tính năng cơ bản của task management
+Story 3 | | X | | | Quan trọng để quản lý thời gian hiệu quả, nhưng có thể làm sau Story 1, 2
+Story 4 | | | X | | Tính năng "nice to have", giúp người dùng đánh giá nhưng không bắt buộc
+Story 5 | | | X | | Có thể giúp tổ chức tốt hơn nhưng không ảnh hưởng đến chức năng chính
+Story 6 | | X | | | Cải thiện trải nghiệm người dùng đáng kể, nên có trong Sprint đầu
+Story 7 | | | | X | Tính năng nâng cao, có thể để lại cho Sprint sau, không ảnh hưởng MVP
+
+
+================================================================================
+GHI CHÚ:
+- File này bao gồm các phần 1-3 theo yêu cầu
+- Các phần còn lại (4-7) sẽ được bổ sung sau
+- Tất cả thông tin dựa trên kiến thức Agile/Scrum và yêu cầu dự án
+================================================================================
+
+
+
